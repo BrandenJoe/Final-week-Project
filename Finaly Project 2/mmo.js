@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
 document.getElementById('searchInput').addEventListener('input',(event) =>{
     const searchQuery = event.target.value.toLowerCase();
-    renderGames(searchQuery)
+    renderGames(searchQuery);
 })
 
 
