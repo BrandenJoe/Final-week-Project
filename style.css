@@ -260,7 +260,9 @@ footer{
     width: 100%;
     max-width: 200px;
   }
+  .games{
   
+  }
   .games__loading {
     width: 100%;
     display: flex;
@@ -272,11 +274,11 @@ footer{
   }
   
   .games__loading--spinner {
-    display: none !important;
+    display: none !important
   }
   
-  .games__loading .books__loading--spinner {
-    display: block !important;
+  .games__loading .games__loading--spinner {
+    display: block !important
   }
   
   .fa-spinner {
