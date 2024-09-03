@@ -261,23 +261,22 @@ footer{
     max-width: 200px;
   }
   .games{
-  
-  }
-  .games__loading {
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .games__loading {
+    
     padding-top: 60px;
     font-size: 60px;
     color: #7342d6;
   }
   
-  .games__loading--spinner {
+  .games__loading{
     display: none !important
   }
   
-  .games__loading .games__loading--spinner {
+  .games__loading {
     display: block !important
   }
   
