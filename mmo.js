@@ -4,13 +4,18 @@ async function renderGames(searchQuery = ""){
     const gamesWrapper = document.querySelector(".games");
 
 
+    gamesWrapper.innerHTML = '<i class="fas fa-spinner games__loading"></i>';
 
-    gamesWrapper.classList += ' games__loading'
-  if(!games){
- games = await getGames();
+    if (!games) {
+      try {
+        games = await getGames();
+      } catch (error) {
+        console.error("Error fetching games:", error);
+        gamesWrapper.innerHTML =
+          "<p>Error loading games. Please try again later.</p>";
+        return;
+      }
     }
-    gamesWrapper.classList.remove('games__loading')
-
 
    
 
