@@ -3,11 +3,18 @@ let games;
 async function renderGames(searchQuery = ""){
     const gamesWrapper = document.querySelector(".games");
 
-    gamesWrapper.classList.add('games__loading');
-    if(!games){
-        games = await getGames();
+
+
+    gamesWrapper.classList += ' games__loading'
+  if(!games){
+ games = await getGames();
     }
-    gamesWrapper.classList.remove('games__loading');
+    gamesWrapper.classList.remove('games__loading')
+
+
+   
+
+   
 
 
 

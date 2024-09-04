@@ -260,31 +260,27 @@ footer{
     width: 100%;
     max-width: 200px;
   }
-  .games{
+  
+  .games__loading {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  .games__loading {
-    
     padding-top: 60px;
     font-size: 60px;
     color: #7342d6;
   }
-  
-  .games__loading{
-    display: none !important
-  }
-  
-  .games__loading {
-    display: block !important
-  }
+.games__loading--spinner{
+    display: none !important;
+}
+.games__loading .games__loading--spinner{
+    display: block !important;
+}
   
   .fa-spinner {
-    animation: rotate 600ms infinite linear;
+    animation: spin 600ms infinite linear;
   }
   
-  @keyframes rotate {
+  @keyframes spin {
     0% {
       transform: rotate(0);
     }
