@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
       renderGames(gameData);
     } catch (error) {
       console.error("Failed to fetch games:", error);
-      gamesWrapper.innerHTML = "<p>Failed to load games.</p>";
+      gamesWrapper.innerHTML =  "<p>Failed to load games.</p>";
     }
   }
 
