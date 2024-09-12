@@ -1,34 +1,49 @@
 document.addEventListener("DOMContentLoaded", function () {
-  let games;
+  let gameData = [];
+  let filteredData = [];
   const gamesWrapper = document.querySelector(".games");
 
   // Show loading spinner
   gamesWrapper.innerHTML = '<i class="fas fa-spinner games__loading"></i>';
 
-  let gameData = [];
-  let sortedGameData = [];
-
   // Event listener for search input
-  const input = document
-    .getElementById("searchInput")
-    .addEventListener("input", searchEvent);
+  document.getElementById("searchInput").addEventListener("input", searchEvent);
 
+  // Event listener for filter dropdown
+  document.getElementById("filter").addEventListener("change", filterGames);
+
+  // Function to handle search input
   function searchEvent(event) {
     const searchValue = event.target.value;
 
-    // Show all games if search input is empty
-    if (searchValue === "") {
-      renderGames(gameData);
-      return;
-    }
-
-    // Flexible search for partial matches (case insensitive)
-    sortedGameData = gameData.filter((item) =>
+    // Filter based on search query (case-insensitive)
+    filteredData = gameData.filter((item) =>
       item.title.toLowerCase().includes(searchValue.toLowerCase())
     );
 
-    // Render filtered games
-    renderGames(sortedGameData);
+    // Apply filter after searching
+    applyFilter();
+  }
+
+  // Function to handle sorting filter
+  function filterGames() {
+    applyFilter();
+  }
+
+  // Function to apply the search and filter logic
+  function applyFilter() {
+    let filteredGames = [...filteredData];
+
+    // Apply alphabetical filter based on dropdown selection
+    const selectedFilter = document.getElementById("filter").value;
+    if (selectedFilter === "A_TO_Z") {
+      filteredGames.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (selectedFilter === "Z_TO_A") {
+      filteredGames.sort((a, b) => b.title.localeCompare(a.title));
+    }
+
+    // Render the filtered games
+    renderGames(filteredGames);
   }
 
   // Function to render games
@@ -41,9 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
               <figure class="game__img--wrapper">
                 <img class="game__img" src="${game.thumbnail}" alt="${game.title}">
               </figure>
-              <div class="game__title">
-                ${game.title}
-              </div>
+              <div class="game__title">${game.title}</div>
             </div>`;
         })
         .join("");
@@ -67,6 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
       const data = await response.json();
       gameData = data;
+      filteredData = [...gameData]; // Clone data to allow filtering
 
       // Initially render all games
       renderGames(gameData);
